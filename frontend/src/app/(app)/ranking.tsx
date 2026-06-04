@@ -1,10 +1,21 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { useAuthStore } from '@/store/authStore';
 
 export default function RankingScreen() {
+  const {logout} = useAuthStore();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (err: any) {
+      console.error('Logout error:', err);
+    }
+  }
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
@@ -12,6 +23,9 @@ export default function RankingScreen() {
           <ThemedText type="title" style={styles.title}>
             Ranking
           </ThemedText>
+          <TouchableOpacity onPress={() => handleLogout()}>
+            <ThemedText>Sair</ThemedText>
+          </TouchableOpacity>
         </ThemedView>
       </SafeAreaView>
     </ThemedView>

@@ -22,7 +22,7 @@ export default function RootLayout() {
     
     if (!user && !inAuthGroup) {
       router.replace('/(auth)/login');
-    } else if (user && inAuthGroup) {
+    } else if (user) {
       router.replace('/(app)');
     }
 
