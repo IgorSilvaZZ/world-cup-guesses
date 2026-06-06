@@ -9,10 +9,10 @@
     "rootDir": "src",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2025",
   },
   "compileOnSave": true,
   "include": [
     "src"
-  ]
+, "src/seed.ts"  ]
 }
