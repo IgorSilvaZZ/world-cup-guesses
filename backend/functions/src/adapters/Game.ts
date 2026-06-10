@@ -6,3 +6,7 @@ export interface Game {
 	secondTeamPoints: string;
 	date: string;
 }
+
+export interface GamesByTodayInput {
+	date: string;
+}

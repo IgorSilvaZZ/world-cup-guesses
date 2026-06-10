@@ -19,14 +19,17 @@
 	},
 	"main": "lib/index.js",
 	"dependencies": {
+		"date-fns": "^4.4.0",
+		"date-fns-tz": "^3.2.0",
 		"firebase-admin": "^13.6.0",
-		"firebase-functions": "^7.0.0"
+		"firebase-functions": "^7.0.0",
+		"zod": "^4.4.3"
 	},
 	"devDependencies": {
 		"@biomejs/monorepo": "biomejs/biome",
 		"firebase-functions-test": "^3.4.1",
-		"typescript": "^6.0.0",
-		"ts-node": "^10.9.2"
+		"ts-node": "^10.9.2",
+		"typescript": "^6.0.0"
 	},
 	"private": true
 }
