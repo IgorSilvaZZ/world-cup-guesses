@@ -1,12 +1,10 @@
-import { endOfDay, format, parse, startOfDay } from "date-fns";
+import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import {
 	type Firestore,
 	getFirestore,
 	Timestamp,
 } from "firebase-admin/firestore";
-
-/* 2026-06-12T02:00:00:00.000Z */
 
 export class GamesService {
 	private readonly firestoreClient: Firestore;
@@ -16,12 +14,8 @@ export class GamesService {
 	}
 
 	public async getGamesByDate(date: string) {
-		const dateParsed = parse(date, "yyyy-MM-dd", new Date());
-
-		const start = Timestamp.fromDate(startOfDay(dateParsed));
-		const end = Timestamp.fromDate(endOfDay(dateParsed));
-
-		console.log({ start, end });
+		const start = Timestamp.fromDate(new Date(`${date}T00:00:00-03:00`))
+		const end = Timestamp.fromDate(new Date(`${date}T23:59:59-03:00`))
 
 		const gamesRef = this.firestoreClient.collection("games");
 

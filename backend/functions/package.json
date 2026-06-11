@@ -6,7 +6,7 @@
 		"lint:check": "biome check --write",
 		"build": "tsc",
 		"build:watch": "tsc --watch",
-		"seed": "FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 tsx ./src/seed.ts",
+		"seed": "FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 ts-node ./src/seed.ts",
 		"emulator:seed": "firebase emulators:exec --only firestore \"npm run seed\" --import=./emulator-data --export-on-exit",
 		"serve": "firebase emulators:start --only functions,firestore --import=./emulator-data --export-on-exit",
 		"shell": "npm run build && firebase functions:shell",
