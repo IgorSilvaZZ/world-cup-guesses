@@ -9,6 +9,6 @@ export interface Game {
 	date: string | Timestamp;
 }
 
-export interface GamesByTodayInput {
+export interface GamesByDateInput {
 	date: string;
 }

@@ -7,6 +7,6 @@ initializeApp();
 
 const gamesController = new GamesController();
 
-export const getGamesByToday = onRequest(
-	gamesController.getGamesByToday.bind(gamesController),
+export const getGamesByDate = onRequest(
+	gamesController.getGamesByDate.bind(gamesController),
 );

@@ -1,7 +1,7 @@
 import type { Request, Response } from "firebase-functions/v1";
-import type { GamesByTodayInput } from "../adapters/Game";
+import type { GamesByDateInput } from "../adapters/Game";
 import { GamesService } from "../services/games.service";
-import { getGamesByTodayValidation } from "../validations/getGamesByTodayValidation";
+import { getGamesByDateValidation } from "../validations/getGamesByDateValidation";
 import { ZodError } from "zod";
 
 export class GamesController {
@@ -11,11 +11,11 @@ export class GamesController {
 		this.gamesService = new GamesService();
 	}
 
-	public async getGamesByToday(req: Request, res: Response) {
+	public async getGamesByDate(req: Request, res: Response) {
 		try {
 			
-			const { date } = getGamesByTodayValidation(
-			req.query as unknown as GamesByTodayInput,
+			const { date } = getGamesByDateValidation(
+			req.query as unknown as GamesByDateInput,
 		);
 
 		const games = await this.gamesService.getGamesByDate(date);

@@ -1,9 +1,9 @@
 import z from "zod";
-import type { GamesByTodayInput } from "../adapters/Game";
+import type { GamesByDateInput } from "../adapters/Game";
 import { CUP_END_DATE, CUP_START_DATE } from "../shared/const";
 
-export function getGamesByTodayValidation(
-	gamesByTodayInput: GamesByTodayInput,
+export function getGamesByDateValidation(
+	gamesByDateInput: GamesByDateInput,
 ) {
 	const schema = z.object({
 		date: z.iso.date().refine((date) => {
@@ -15,7 +15,7 @@ export function getGamesByTodayValidation(
 		})
 	});
 
-	const result = schema.parse(gamesByTodayInput);
+	const result = schema.parse(gamesByDateInput);
 
 	return result;
 }

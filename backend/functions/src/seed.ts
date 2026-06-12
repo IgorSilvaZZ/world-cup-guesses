@@ -45,8 +45,8 @@ export const createGames = async () => {
 			date: Timestamp.fromDate(new Date(`2026-06-11T16:00:00${TIME_ZONE}`)),
 			firstTeamCountryCode: "MX",
 			secundTeamCountryCode: "ZA",
-			firstTeamPoints: "",
-			secondTeamPoints: "",
+			firstTeamPoints: "2",
+			secondTeamPoints: "0",
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-11T23:00:00${TIME_ZONE}`)),
