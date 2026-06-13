@@ -4,7 +4,7 @@
 
 "@biomejs/monorepo@biomejs/biome":
   version "0.0.0"
-  resolved "https://codeload.github.com/biomejs/biome/tar.gz/7ff6b165f2f62a0836446dee889d9868f12fb06e"
+  resolved "https://codeload.github.com/biomejs/biome/tar.gz/ac6615cdfbc4848f047a74e5c8ff77f7717b623f"
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"

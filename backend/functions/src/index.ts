@@ -10,3 +10,7 @@ const gamesController = new GamesController();
 export const getGamesByDate = onRequest(
 	gamesController.getGamesByDate.bind(gamesController),
 );
+
+export const getGameById = onRequest(
+	gamesController.getGameById.bind(gamesController),
+);
