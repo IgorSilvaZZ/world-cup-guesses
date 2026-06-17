@@ -1,7 +1,5 @@
 /** biome-ignore-all lint/correctness/noUnusedPrivateClassMembers: "" */
 
-import { format } from "date-fns";
-import { toZonedTime } from "date-fns-tz";
 import {
 	type CollectionReference,
 	type Firestore,
@@ -10,6 +8,7 @@ import {
 } from "firebase-admin/firestore";
 import type { Game } from "../adapters/Game";
 import type { IGamesRepository } from "../adapters/IGamesRepository";
+import { GameMapper } from "../mappers/GameMapper";
 
 export class GamesRepository implements IGamesRepository {
 	private readonly firestoreClient: Firestore;
@@ -26,17 +25,11 @@ export class GamesRepository implements IGamesRepository {
 
 		const data = game.data();
 
-		if (!game.exists && !data) {
+		if (!game.exists || !data) {
 			return null;
 		}
 
-		const utcDate = data?.date.toDate();
-		const brDate = toZonedTime(utcDate, "America/Sao_Paulo");
-
-		return {
-			...game.data(),
-			date: format(brDate, "yyyy-MM-dd HH:mm:ss"),
-		} as Game;
+		return GameMapper.gameToDomain(data);
 	}
 
 	async findByRange(startDate: string, endDate: string): Promise<Game[]> {
@@ -48,19 +41,8 @@ export class GamesRepository implements IGamesRepository {
 			.where("date", "<=", end)
 			.get();
 
-		const games = docGames.docs.map((doc) => {
-			const data = doc.data();
+		const games = docGames.docs.map(GameMapper.gameToDomain);
 
-			const utcDate = data.date.toDate();
-			const brDate = toZonedTime(utcDate, "America/Sao_Paulo");
-
-			return {
-				id: doc.id,
-				...data,
-				date: format(brDate, "yyyy-MM-dd HH:mm:ss"),
-			};
-		});
-
-		return games as Game[];
+		return games;
 	}
 }
