@@ -1,4 +1,5 @@
 /** biome-ignore-all lint/complexity/noStaticOnlyClass: "" */
+
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import type { Game } from "../adapters/Game";
