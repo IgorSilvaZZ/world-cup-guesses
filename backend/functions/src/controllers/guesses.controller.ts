@@ -10,7 +10,7 @@ export class GuessesController {
 		this.guessesService = new GuessesService();
 	}
 
-	public async create(req: Request, res: Response) {
+	public async createAndUpdate(req: Request, res: Response) {
 		try {
 			const { firstTeamPoints, secondTeamPoints, gameId, userId } = req.body;
 
@@ -21,14 +21,14 @@ export class GuessesController {
 				userId,
 			});
 
-			await this.guessesService.create({
+			await this.guessesService.createAndUpdate({
 				firstTeamPoints,
 				secondTeamPoints,
 				gameId,
 				userId,
 			});
 
-			res.status(201).send();
+			res.status(200).send();
 		} catch (error) {
 			ErrorResolver.execute(error, res);
 		}

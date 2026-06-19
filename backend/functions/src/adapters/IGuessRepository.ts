@@ -7,4 +7,5 @@ export interface IGuessRepository {
 	findByUserId(userId: string): Promise<Guess[]>;
 	findByGameId(gameId: string): Promise<Guess[]>;
 	create(data: GuessInput): Promise<void>;
+	update(guessId: string, data: Partial<GuessInput>): Promise<void>;
 }

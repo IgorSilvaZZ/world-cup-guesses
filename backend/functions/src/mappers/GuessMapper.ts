@@ -3,14 +3,14 @@
 import type { Guess } from "../adapters/Guess";
 
 export class GuessMapper {
-	public static guessToDomain(data: FirebaseFirestore.DocumentData): Guess {
+	public static guessToDomain(doc: FirebaseFirestore.DocumentData): Guess {
 		return {
-			id: data.id,
-			firstTeamPoints: data.firstTeamPoints,
-			secondTeamPoints: data.secondTeamPoints,
-			gameId: data.gameId,
-			userId: data.userId,
-			createdAt: data.createdAt,
+			id: doc.id,
+			firstTeamPoints: doc.data().firstTeamPoints,
+			secondTeamPoints: doc.data().secondTeamPoints,
+			gameId: doc.data().gameId,
+			userId: doc.data().userId,
+			createdAt: doc.data().createdAt,
 		};
 	}
 }

@@ -20,33 +20,31 @@ export class GuessesRepository implements IGuessRepository {
 	}
 
 	async findById(id: string): Promise<Guess | null> {
-		const guess = await this.guessesRef.doc(id).get();
+		const docGuesses = await this.guessesRef.doc(id).get();
 
-		const data = guess.data();
-
-		if (!guess.exists || !data) {
+		if (!docGuesses.exists) {
 			return null;
 		}
 
-		return GuessMapper.guessToDomain(data);
+		return GuessMapper.guessToDomain(docGuesses);
 	}
 
 	async findByUserAndGame(
 		userId: string,
 		gameId: string,
 	): Promise<Guess | null> {
-		const guess = await this.guessesRef
+		const guessDoc = await this.guessesRef
 			.where("userId", "==", userId)
 			.where("gameId", "==", gameId)
 			.get();
 
-		if (guess.empty || guess.docs.length === 0) {
+		if (guessDoc.empty || guessDoc.docs.length === 0) {
 			return null;
 		}
 
-		const [data] = guess.docs;
+		const [docGuess] = guessDoc.docs;
 
-		return GuessMapper.guessToDomain(data);
+		return GuessMapper.guessToDomain(docGuess);
 	}
 
 	async findAll(): Promise<Guess[]> {
@@ -79,5 +77,9 @@ export class GuessesRepository implements IGuessRepository {
 
 	async create(data: GuessInput): Promise<void> {
 		await this.guessesRef.doc().set(data);
+	}
+
+	async update(guessId: string, data: Partial<GuessInput>): Promise<void> {
+		await this.guessesRef.doc(guessId).update(data);
 	}
 }

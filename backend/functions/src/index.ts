@@ -19,5 +19,5 @@ export const getGameById = onRequest(
 );
 
 export const sendGuess = onRequest(
-	guessesController.create.bind(guessesController),
+	guessesController.createAndUpdate.bind(guessesController),
 );
