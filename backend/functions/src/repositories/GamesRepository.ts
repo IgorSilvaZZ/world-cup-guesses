@@ -21,15 +21,13 @@ export class GamesRepository implements IGamesRepository {
 	}
 
 	async findById(id: string): Promise<Game | null> {
-		const game = await this.gamesRef.doc(id).get();
+		const docGames = await this.gamesRef.doc(id).get();
 
-		const data = game.data();
-
-		if (!game.exists || !data) {
+		if (!docGames.exists) {
 			return null;
 		}
 
-		return GameMapper.gameToDomain(data);
+		return GameMapper.gameToDomain(docGames);
 	}
 
 	async findByRange(startDate: string, endDate: string): Promise<Game[]> {

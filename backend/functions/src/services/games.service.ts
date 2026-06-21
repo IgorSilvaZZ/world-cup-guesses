@@ -8,13 +8,13 @@ export class GamesService {
 		this.gamesRepository = new GamesRepository();
 	}
 
-	public async getGamesById(id: string) {
+	public async getById(id: string) {
 		const game = await this.gamesRepository.findById(id);
 
 		return game;
 	}
 
-	public async getGamesByDate(date: string) {
+	public async getByDate(date: string) {
 		const games = await this.gamesRepository.findByRange(date, date);
 
 		return games;
