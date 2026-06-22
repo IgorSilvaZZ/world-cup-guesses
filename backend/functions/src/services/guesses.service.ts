@@ -1,4 +1,4 @@
-import type { GuessInput } from "../adapters/Guess";
+import type { Guess, GuessInput } from "../adapters/Guess";
 import type { IGamesRepository } from "../adapters/IGamesRepository";
 import type { IGuessRepository } from "../adapters/IGuessRepository";
 import type { IUserRepository } from "../adapters/IUserRepository";
@@ -20,12 +20,24 @@ export class GuessesService {
 		this.gamesRepository = new GamesRepository();
 	}
 
+	public async getByUserId(userId: string): Promise<Guess[]> {
+		const user = await this.usersRepository.findById(userId);
+
+		if (!user) {
+			throw new AppErrors("User not found", 404);
+		}
+
+		const guesses = await this.guessesRepository.findByUserId(userId);
+
+		return guesses;
+	}
+
 	public async createAndUpdate({
 		firstTeamPoints,
 		secondTeamPoints,
 		userId,
 		gameId,
-	}: GuessInput) {
+	}: GuessInput): Promise<void> {
 		const user = await this.usersRepository.findById(userId);
 
 		if (!user) {

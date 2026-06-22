@@ -10,6 +10,18 @@ export class GuessesController {
 		this.guessesService = new GuessesService();
 	}
 
+	public async getByUserId(req: Request, res: Response) {
+		try {
+			const userId = req.params[0] as string;
+
+			const guesses = await this.guessesService.getByUserId(userId);
+
+			res.status(200).json({ guesses });
+		} catch (error) {
+			ErrorResolver.execute(error, res);
+		}
+	}
+
 	public async createAndUpdate(req: Request, res: Response) {
 		try {
 			const { firstTeamPoints, secondTeamPoints, gameId, userId } = req.body;
