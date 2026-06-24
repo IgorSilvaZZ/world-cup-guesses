@@ -19,6 +19,7 @@ export class GameMapper {
 			secondTeamPoints: data.secondTeamPoints,
 			secundTeamCountryCode: data.secundTeamCountryCode,
 			date: format(brDate, "yyyy-MM-dd HH:mm:ss"),
+			finished: data.finished
 		};
 	}
 }

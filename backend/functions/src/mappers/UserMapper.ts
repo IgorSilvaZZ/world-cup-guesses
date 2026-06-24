@@ -8,6 +8,7 @@ export class UserMapper {
 			name: doc.data().name,
 			email: doc.data().email,
 			password: doc.data().password,
+			points: doc.data().points
 		};
 	}
 }

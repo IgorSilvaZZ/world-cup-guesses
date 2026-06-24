@@ -6,6 +6,7 @@ export interface Game {
 	secundTeamCountryCode: string;
 	firstTeamPoints: string;
 	secondTeamPoints: string;
+	finished: boolean
 	date: string | Timestamp;
 }
 

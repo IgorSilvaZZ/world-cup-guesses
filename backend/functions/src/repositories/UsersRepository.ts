@@ -5,7 +5,7 @@ import {
 	getFirestore,
 } from "firebase-admin/firestore";
 import type { IUserRepository } from "../adapters/IUserRepository";
-import type { User } from "../adapters/User";
+import type { User, UserInput } from "../adapters/User";
 import { UserMapper } from "../mappers/UserMapper";
 
 export class UsersRepository implements IUserRepository {
@@ -27,4 +27,10 @@ export class UsersRepository implements IUserRepository {
 
 		return UserMapper.userToDomain(docUsers);
 	}
+
+
+	async update(id: string, data: Partial<UserInput>): Promise<void> {
+		await this.usersRef.doc(id).update(data)
+	}
+
 }

@@ -9,14 +9,24 @@ initializeApp({ projectId: "bolao-copa-do-mundo-3ba11" });
 
 const db = getFirestore();
 
-const TIME_ZONE = "-03:00"
+const TIME_ZONE = "-03:00";
 
 export const createUsers = async () => {
 	console.log("🎯 Starting users seeding...");
 
 	const users: User[] = [
-		{ name: "Iguinho", email: "iguinho@email.com", password: "senha123" },
-		{ name: "Vitinho", email: "vitinho@email.com", password: "senha123" },
+		{
+			name: "Iguinho",
+			email: "iguinho@email.com",
+			password: "senha123",
+			points: 0,
+		},
+		{
+			name: "Vitinho",
+			email: "vitinho@email.com",
+			password: "senha123",
+			points: 0,
+		},
 	];
 
 	try {
@@ -47,6 +57,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "ZA",
 			firstTeamPoints: "2",
 			secondTeamPoints: "0",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-11T23:00:00${TIME_ZONE}`)),
@@ -54,6 +65,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "CZ",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-12T16:00:00${TIME_ZONE}`)),
@@ -61,6 +73,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "BA",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-13T16:00:00${TIME_ZONE}`)),
@@ -68,6 +81,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "CH",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-13T19:00:00${TIME_ZONE}`)),
@@ -75,6 +89,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "MA",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-13T22:00:00${TIME_ZONE}`)),
@@ -82,6 +97,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "GB",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-12T22:00:00${TIME_ZONE}`)),
@@ -89,6 +105,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "PY",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-14T01:00:00${TIME_ZONE}`)),
@@ -96,6 +113,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "TR",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-14T14:00:00${TIME_ZONE}`)),
@@ -103,6 +121,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "CW",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-14T20:00:00${TIME_ZONE}`)),
@@ -110,6 +129,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "EC",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-14T17:00:00${TIME_ZONE}`)),
@@ -117,6 +137,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "JP",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-14T23:00:00${TIME_ZONE}`)),
@@ -124,6 +145,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "TN",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-15T16:00:00${TIME_ZONE}`)),
@@ -131,6 +153,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "EG",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-15T22:00:00${TIME_ZONE}`)),
@@ -138,6 +161,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "NZ",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-15T13:00:00${TIME_ZONE}`)),
@@ -145,6 +169,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "CV",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-15T19:00:00${TIME_ZONE}`)),
@@ -152,6 +177,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "UY",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-16T16:00:00${TIME_ZONE}`)),
@@ -159,6 +185,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "SN",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-16T19:00:00${TIME_ZONE}`)),
@@ -166,6 +193,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "NO",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-16T22:00:00${TIME_ZONE}`)),
@@ -173,6 +201,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "DZ",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-17T01:00:00${TIME_ZONE}`)),
@@ -180,6 +209,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "JO",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-17T14:00:00${TIME_ZONE}`)),
@@ -187,6 +217,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "CD",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-17T23:00:00${TIME_ZONE}`)),
@@ -194,6 +225,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "CO",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-17T17:00:00${TIME_ZONE}`)),
@@ -201,6 +233,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "HR",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 		{
 			date: Timestamp.fromDate(new Date(`2026-06-17T20:00:00${TIME_ZONE}`)),
@@ -208,6 +241,7 @@ export const createGames = async () => {
 			secundTeamCountryCode: "PA",
 			firstTeamPoints: "",
 			secondTeamPoints: "",
+			finished: false
 		},
 	];
 
@@ -218,7 +252,7 @@ export const createGames = async () => {
 			console.error("❌ Error seeding games:", error);
 
 			throw error;
-		}	
+		}
 	}
 
 	console.log("✅ Seeding game completed successfully!");

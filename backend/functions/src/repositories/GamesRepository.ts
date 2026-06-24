@@ -43,4 +43,13 @@ export class GamesRepository implements IGamesRepository {
 
 		return games;
 	}
+
+	async findFinished(): Promise<Game[]> {
+		const docGames = await this.gamesRef.where("finished", "==", true).get()
+
+		const games = docGames.docs.map(GameMapper.gameToDomain)
+
+		return games;
+	}
+
 }
