@@ -4,6 +4,7 @@ export interface Guess {
 	secondTeamPoints: string;
 	gameId: string;
 	userId: string;
+	processed: boolean;
 	createdAt: string;
 }
 
@@ -12,4 +13,5 @@ export interface GuessInput {
 	secondTeamPoints: number;
 	gameId: string;
 	userId: string;
+	processed?: boolean;
 }

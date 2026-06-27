@@ -10,6 +10,7 @@ export class GuessMapper {
 			secondTeamPoints: doc.data().secondTeamPoints,
 			gameId: doc.data().gameId,
 			userId: doc.data().userId,
+			processed: doc.data().processed,
 			createdAt: doc.data().createdAt,
 		};
 	}

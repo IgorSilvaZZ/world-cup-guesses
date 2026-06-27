@@ -19,4 +19,12 @@ export class GamesService {
 
 		return games;
 	}
+
+	public async processedFinished(gamesIds: string[]) {
+		await Promise.all(
+			gamesIds.map((gameId) =>
+				this.gamesRepository.update(gameId, { finished: true }),
+			),
+		);
+	}
 }

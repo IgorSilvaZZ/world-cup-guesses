@@ -6,10 +6,17 @@ export interface Game {
 	secundTeamCountryCode: string;
 	firstTeamPoints: string;
 	secondTeamPoints: string;
-	finished: boolean
+	finished: boolean;
 	date: string | Timestamp;
 }
 
 export interface GamesByDateInput {
 	date: string;
+}
+
+export interface GameUpdateInput {
+	firstTeamPoints: string;
+	secondTeamPoints: string;
+	date: string;
+	finished: boolean;
 }

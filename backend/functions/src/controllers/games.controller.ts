@@ -36,4 +36,16 @@ export class GamesController {
 			ErrorResolver.execute(error, res);
 		}
 	}
+
+	public async finishedGamesByIds(req: Request, res: Response) {
+		try {
+			const { gamesIds } = req.body;
+
+			await this.gamesService.processedFinished(gamesIds);
+
+			res.status(200).send();
+		} catch (error) {
+			ErrorResolver.execute(error, res);
+		}
+	}
 }

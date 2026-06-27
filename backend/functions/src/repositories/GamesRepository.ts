@@ -6,7 +6,7 @@ import {
 	getFirestore,
 	Timestamp,
 } from "firebase-admin/firestore";
-import type { Game } from "../adapters/Game";
+import type { Game, GameUpdateInput } from "../adapters/Game";
 import type { IGamesRepository } from "../adapters/IGamesRepository";
 import { GameMapper } from "../mappers/GameMapper";
 
@@ -45,11 +45,14 @@ export class GamesRepository implements IGamesRepository {
 	}
 
 	async findFinished(): Promise<Game[]> {
-		const docGames = await this.gamesRef.where("finished", "==", true).get()
+		const docGames = await this.gamesRef.where("finished", "==", true).get();
 
-		const games = docGames.docs.map(GameMapper.gameToDomain)
+		const games = docGames.docs.map(GameMapper.gameToDomain);
 
 		return games;
 	}
 
+	async update(gameId: string, data: Partial<GameUpdateInput>): Promise<void> {
+		await this.gamesRef.doc(gameId).update(data);
+	}
 }

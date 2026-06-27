@@ -65,9 +65,10 @@ export class GuessesRepository implements IGuessRepository {
 		return guesses;
 	}
 
-	async findByGameId(gameId: string): Promise<Guess[]> {
+	async findByGameIdNotProcessed(gameId: string): Promise<Guess[]> {
 		const docGuesses = await this.guessesRef
 			.where("gameId", "==", gameId)
+			.where("processed", "==", false)
 			.get();
 
 		const guesses = docGuesses.docs.map(GuessMapper.guessToDomain);
