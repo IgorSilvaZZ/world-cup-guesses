@@ -1,7 +1,7 @@
 export interface Guess {
 	id?: string;
-	firstTeamPoints: string;
-	secondTeamPoints: string;
+	firstTeamPoints: number;
+	secondTeamPoints: number;
 	gameId: string;
 	userId: string;
 	processed: boolean;
