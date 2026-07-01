@@ -1,3 +1,4 @@
+import type { FinishedGamesInput } from "../adapters/Game";
 import type { IGamesRepository } from "../adapters/IGamesRepository";
 import { GamesRepository } from "../repositories/GamesRepository";
 
@@ -20,11 +21,13 @@ export class GamesService {
 		return games;
 	}
 
-	public async processedFinished(gamesIds: string[]) {
-		await Promise.all(
-			gamesIds.map((gameId) =>
-				this.gamesRepository.update(gameId, { finished: true }),
-			),
-		);
+	public async processedFinished(gamesIds: FinishedGamesInput[]) {
+		for (const game of gamesIds) {
+			await this.gamesRepository.update(game.gameId, {
+				firstTeamPoints: String(game.firstTeamPoints),
+				secondTeamPoints: String(game.secondTeamPoints),
+				finished: true,
+			});
+		}
 	}
 }

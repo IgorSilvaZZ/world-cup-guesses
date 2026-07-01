@@ -30,14 +30,11 @@ export const getGuessesByUser = onRequest(
 	guessesController.getByUserId.bind(guessesController),
 );
 
-/* Melhorar e colocar o placar juntamente com os ids do jogos */
 export const finishedGames = onRequest(
 	gamesController.finishedGamesByIds.bind(gamesController),
 );
 
 export const processRaking = onDocumentUpdated("games/{gameId}", (event) => {
-	/* Colocar uma forma de filtrar e ser acionando como o campo de finished é acionado */
-
 	const gameId = event.params.gameId;
 
 	const gameBeforeData = {
@@ -50,5 +47,7 @@ export const processRaking = onDocumentUpdated("games/{gameId}", (event) => {
 		...event.data?.after.data(),
 	} as Game;
 
-	rankingController.process(gameBeforeData, gameAfterData);
+	if (gameBeforeData.finished !== gameAfterData.finished) {
+		rankingController.process(gameBeforeData, gameAfterData);
+	}
 });

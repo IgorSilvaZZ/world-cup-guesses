@@ -20,3 +20,9 @@ export interface GameUpdateInput {
 	date: string;
 	finished: boolean;
 }
+
+export interface FinishedGamesInput {
+	gameId: string;
+	firstTeamPoints: string;
+	secondTeamPoints: number;
+}

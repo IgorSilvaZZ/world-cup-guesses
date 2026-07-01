@@ -2,6 +2,7 @@ import type { Request, Response } from "firebase-functions/v1";
 import type { GamesByDateInput } from "../adapters/Game";
 import { GamesService } from "../services/games.service";
 import { ErrorResolver } from "../shared/resolvers/ErrorResolver";
+import { FinishedGamesValidation } from "../validations/FinishedGamesValidation";
 import { getGamesByDateValidation } from "../validations/getGamesByDateValidation";
 
 export class GamesController {
@@ -40,6 +41,8 @@ export class GamesController {
 	public async finishedGamesByIds(req: Request, res: Response) {
 		try {
 			const { gamesIds } = req.body;
+
+			FinishedGamesValidation.finishedGames(gamesIds);
 
 			await this.gamesService.processedFinished(gamesIds);
 
